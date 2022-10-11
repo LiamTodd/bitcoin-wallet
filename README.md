@@ -1,3 +1,5 @@
+*used as a test repository for HCIV project*
+
 # BITCOIN WALLET
 
 Welcome to _Bitcoin Wallet_, a standalone Bitcoin payment app for your Android device!
