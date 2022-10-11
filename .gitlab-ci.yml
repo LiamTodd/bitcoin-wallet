@@ -1,0 +1,19 @@
+image: ${DOCKER_IMAGE}
+
+variables:
+  ANDROID_HOME:             "$PWD/android-sdk"
+
+before_script:
+  - apt-get update
+  - apt-get -y upgrade
+  - apt-get -y install ${JDK_PACKAGE}
+  - apt-get -y install sdkmanager gradle
+  - yes | sdkmanager --licenses >/dev/null || true
+
+build:
+  parallel:
+    matrix:
+      - DOCKER_IMAGE: [ ubuntu:jammy, debian:bookworm-slim ]
+        JDK_PACKAGE: [ openjdk-11-jdk-headless ]
+  script:
+    - gradle build --stacktrace
